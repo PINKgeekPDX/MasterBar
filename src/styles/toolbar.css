@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toolbar {
+  position: fixed;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: move;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.toolbar:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.1);
+}
+
+.toolbar.vertical {
+  flex-direction: column;
+}
+
+.toolbar.vertical .buttons-container {
+  flex-direction: column;
+}
+
+.toolbar.vertical .main-buttons {
+  flex-direction: column;
+}
+
+.toolbar.vertical .expanded-section {
+  flex-direction: column;
+  margin-left: 0;
+  margin-top: 6px;
+}
+
+.toolbar.vertical .separator {
+  width: 100%;
+  height: 1px;
+  margin: 6px 0;
+}
+
+.separator {
+  width: 1px;
+  height: 24px;
+  margin: 0 6px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.toolbar:hover .separator {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.toolbar-button {
+  @apply flex items-center justify-center rounded-md bg-white/10 
+         text-white/80 hover:text-white hover:bg-white/20
+         transition-all duration-200 ease-in-out;
+  min-width: 32px;
+  min-height: 32px;
+  cursor: pointer !important;
+}
+
+.toolbar-button.active {
+  @apply bg-blue-500/50 text-white;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.toolbar-button:hover {
+  transform: translateY(-1px);
+}
+
+.toolbar-button:active {
+  transform: translateY(0);
+}
+
+.edge-indicator {
+  position: fixed;
+  pointer-events: none;
+  background: rgba(99, 102, 241, 0.4);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.edge-indicator.active {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.edge-indicator.top {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  border-radius: 0 0 12px 12px;
+}
+
+.edge-indicator.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 0 12px 12px 0;
+}
+
+.edge-indicator.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 6px;
+  border-radius: 12px 0 0 12px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
